@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_tag "/supply_name/find" do %>
+    <%= text_field_tag :search_string %>
+    <%= submit_tag :search%>
+<%end%>
+
+
+<h1>Supplies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Art type</th>
+      <th>Delivery</th>
+      <th>Price</th>
+      <th>Stock</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @supplies.each do |supply| %>
+      <tr>
+        <td><%= supply.name %></td>
+        <td><%= supply.art_type %></td>
+        <td><%= supply.delivery %></td>
+        <td><%= supply.price %></td>
+        <td><%= supply.stock %></td>
+        <td><%= link_to 'Show', supply %></td>
+        <td><%= link_to 'Edit', edit_supply_path(supply) %></td>
+        <td><%= link_to 'Destroy', supply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<td><%= link_to 'Back' , supplies_path %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Supply', new_supply_path %>
